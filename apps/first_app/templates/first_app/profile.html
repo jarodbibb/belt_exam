@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Success</title>
+</head>
+<body>
+    <h1>Success! Welcome, {{user.first_name}}!</h1>
+    <form action="/logout" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Logout">
+    </form>
+
+    
+    <h3> My Wish List</h3>
+
+    
+   
+    <table>
+        <tr><th> Item </th>
+        <th> Added by </th>
+        <th> date added </th>
+        <th> action</th></tr>
+        {% for wish in my_wish %}
+        <tr><td><a href = "/see_users/{{wish.id}}">{{wish.item}}</a></td>
+            <td>{{wish.created_by.first_name}}</td>
+            <td>{{wish.created_at}}</td>
+            <td><a href="/remove/{{wish.id}}">remove</a></td>
+        
+        </tr>
+        {% endfor %}
+        {% for wish in my_create %}
+        <tr><td><a href = "/see_users/{{wish.id}}">{{wish.item}}</a></td>
+            <td>{{wish.created_by.first_name}}</td>
+            <td>{{wish.created_at}}</td>
+            <td><a href="/delete/{{wish.id}}">delete</a></td></tr>
+  
+    
+        
+        {% endfor %}
+    </table>
+    </div>
+    <h3> Others users Wish list </h3>
+    <table>
+            <tr><th> Item </th>
+            <th> Added by </th>
+            <th> date added </th>
+            <th> action</th></tr>
+            {% for wish in all_item %}
+            <tr><td><a href = "/see_users/{{wish.id}}">{{wish.item}}</a></td>
+            <td> {{wish.created_by.first_name}}</td>
+            <td>{{wish.created_at}}</td>
+            <td><a href="/add_item/{{wish.id}}">add to wish list</a></td>
+            
+            </tr>
+    
+            {% endfor %}
+
+        </table>
+        <h1> <a href="/suggest_item">create item to wish list</a>  </h1>
+ </body>
+</html>

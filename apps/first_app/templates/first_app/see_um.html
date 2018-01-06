@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Success</title>
+</head>
+<body>
+    <h1>Success! Welcome, {{user.first_name}}!</h1>
+    <form action="/logout" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Logout">
+    </form>
+    <a href="/success">Home</a>
+    <h1>Item </h1>
+    {{listed.item}}
+    <h2>Who has added item to their wishlist</h2>
+    {% for like in liker %}
+    <p>{{like.first_name}}</p>
+
+    {% endfor %}
+
+
+  
+ </body>
+</html>
